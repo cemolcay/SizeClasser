@@ -22,7 +22,7 @@ public struct SizeClasser: OptionSet {
   // MARK: Init
 
   /// Initilizes with UITraitCollection.
-  /// Recommended usage is in UIViewController's `viewDidLayoutSubviews` function or with UIViewController's `traitCollection` property.
+  /// Recommended usage is in UIViewController's `viewDidLayoutSubviews` or `traitCollectionDidChanged:previousTraitCollection` function with UIViewController's `traitCollection` property.
   public init?(traitCollection: UITraitCollection) {
     guard let appSize = UIApplication.shared.windows.first?.bounds.size else { return nil }
     let screenSize = UIScreen.main.bounds.size
