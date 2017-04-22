@@ -9,17 +9,47 @@
 import UIKit
 
 class ViewController: UIViewController {
+  @IBOutlet weak var label: UILabel?
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    update()
   }
 
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+  func update(for traitCollection: UITraitCollection? = nil) {
+    guard let trait = SizeClasser(traitCollection: traitCollection ?? super.traitCollection) else { return }
+    var text = ""
+    if trait.contains(.portrait) {
+      text += "Portrait\n"
+    }
+    if trait.contains(.landscape) {
+      text += "Landscape\n"
+    }
+    if trait.contains(.iPhonePortrait) {
+      text += "iPhone Portrait\n"
+    }
+    if trait.contains(.iPhoneLandscape) {
+      text += "iPhone Landscape\n"
+    }
+    if trait.contains(.iPadPortrait) {
+      text += "iPad Portrait\n"
+    }
+    if trait.contains(.iPadLandscape) {
+      text += "iPad Landscape\n"
+    }
+    if trait.contains(.iPadSplitOneThird) {
+      text += "Split View 1/3\n"
+    }
+    if trait.contains(.iPadSplitHalf) {
+      text += "Split View 1/2\n"
+    }
+    if trait.contains(.iPadSplitTwoThird) {
+      text += "Split View 2/3\n"
+    }
+    if SizeClasser.isiPadPro {
+      text += "iPad Pro"
+    }
+    label?.text = text
   }
-
-
 }
 
